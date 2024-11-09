@@ -165,7 +165,7 @@ module.exports = function defineGrammar(dialect) {
         $.trait_declaration,
         $.enum_declaration,
         $.namespace_definition,
-        $.namespace_use_declaration,
+        $.namespace_use_list,
         $.global_declaration,
         $.function_static_declaration,
       ),
@@ -204,6 +204,8 @@ module.exports = function defineGrammar(dialect) {
           ),
         ),
       ),
+
+      namespace_use_list: $ => prec.right(seq($.namespace_use_declaration, repeat($.namespace_use_declaration))),
 
       namespace_use_declaration: $ => seq(
         keyword('use'),
